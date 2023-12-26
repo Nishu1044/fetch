@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LS</title>
+    <style>
+      
+      body {
+            /* font-family: 'Arial', sans-serif; */
+            background-color: #cde2f0;
+             margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+             height: 90vh; /*----- height adjust */
+        }
+        #user_form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+/* ---------------------------------------------- */
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+        }
+
+        /* ----------------------------------------------------- */
+    </style>
+</head>
+<body>
+    <div id="user_form">
+      <label for="name">Nishu:</label>
+      <input type="text" id="name" placeholder="Enter your name">
+
+      <label for="age">Age:</label>
+      <input type="text" id="age" placeholder="Enter your age">
+
+      <button id="btn">Submit</button>
+      <button id="retrieveBtn">Retrieve Data</button>
+    </div>
+    
+
+</body>
+</html>
+
+<script>
+     
+    let subtn = document.getElementById("btn")
+
+    subtn.addEventListener("click",function(){
+      let Name = document.getElementById("name").value;
+      let Age = document.getElementById("age").value;
+
+            let userData = {
+                name: Name,
+                age: Age
+            };
+            // console.log(userData);
+            localStorage.setItem("userData",JSON.stringify(userData))
+            console.log(userData);
+    })
+
+
+// /------2nd step-----/ 
+let retrieveBtn = document.getElementById("retrieveBtn");
+retrieveBtn.addEventListener("click", function () {
+  // Retrieve the data from local storage
+  let storedUserData = JSON.parse(localStorage.getItem("userData"));
+
+  if (storedUserData) {
+    // Display the retrieved data
+    alert("Name: " + storedUserData.name + "\nAge: " + storedUserData.age);
+  } else {
+    alert("No data stored yet.");
+  }
+})
+
+</script>
